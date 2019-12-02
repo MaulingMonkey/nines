@@ -1,8 +1,13 @@
 use super::*;
 use std::convert::TryFrom;
 
-/// Describe a layout to render with.  You'll probably start with a:
+/// Describe a layout to render with.  The general use pattern is:
 /// 
+/// * Construct a [Layout]<[Dimensions]<[i32]>>
+/// * Convert to a [Layout]<[ValidDimensions]<[i32]>> via layout.[validate]\(\).unwrap() or similar
+/// * Use [each_dst_src] to enumerate the destination and source rectangles to use for 9-slice rendering.
+/// 
+/// ### Example
 /// 
 /// ```rust
 /// use nines::*;
@@ -32,6 +37,15 @@ use std::convert::TryFrom;
 /// assert_eq!(rects[1].1, Rect::xywh(1, 0, 1, 1));
 /// // ...
 /// ```
+/// 
+/// [Layout]:           struct.Layout.html
+/// [Dimensions]:       struct.Dimensions.html
+/// [ValidDimensions]:  struct.ValidDimensions.html
+/// 
+/// [i32]:              trait.Scalar.html
+/// 
+/// [each_dst_src]:     #method.each_dst_src
+/// [validate]:         #method.validate
 pub struct Layout<Dst, Src> {
     pub dst:    Dst,
     pub src:    Src,
