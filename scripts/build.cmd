@@ -1,6 +1,6 @@
 @set ERRORS=0
 @pushd "%~dp0.."
-@call :cargo test --features "debug unsigned-scalar"
+@call :cargo test --all-features
 @call :cargo test
 @call :cargo doc
 @popd

@@ -3,6 +3,8 @@
 **NINE S**lice scaling math
 
 [![GitHub](https://img.shields.io/github/stars/MaulingMonkey/nines.svg?label=GitHub&style=social)](https://github.com/MaulingMonkey/nines)
+[![Build Status](https://travis-ci.org/MaulingMonkey/nines.svg)](https://travis-ci.org/MaulingMonkey/nines)
+[![Crates.io](https://img.shields.io/crates/v/nines.svg)](https://crates.io/crates/nines)
 ![unsafe: no](https://img.shields.io/badge/unsafe-no-green.svg)
 ![rust: 1.39.0+](https://img.shields.io/badge/rust-1.39.0%2B-green.svg)
 [![Open issues](https://img.shields.io/github/issues-raw/MaulingMonkey/nines.svg)](https://github.com/MaulingMonkey/nines/issues)
