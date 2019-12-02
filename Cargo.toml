@@ -1,0 +1,22 @@
+# https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "nines"
+version = "0.0.0-9S"
+authors = ["MaulingMonkey <git@maulingmonkey.com>"]
+edition = "2018"
+description = "9-Slice scaling math"
+documentation = "https://docs.rs/nines/"
+repository = "https://github.com/MaulingMonkey/nines"
+readme = "README.md"
+keywords = ["math", "slice", "nine", "9"]
+categories = ["mathematics", "graphics", "multimedia::images", "gui"]
+license = "MIT OR Apache-2.0"
+include = ["/src/**/*", "/Cargo.toml", "/LICENSE-MIT", "/LICENSE-APACHE", "/Readme.md"]
+
+[features]
+default         = []
+debug           = [] # (Default: Off).  Enable additional asserts, may harm performance.
+unsigned-scalar = [] # (Default: Off).  Enable `Scalar` to be used with `uNN`.  Way too easy to have negative values in UI layout, so I discourage this.
+
+[dependencies]
