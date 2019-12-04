@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <Type Name="nines::rect::Rect&lt;*&gt;">
+    <DisplayString>[{left,g},{top,g}]..[{right,g},{bottom,g}] (size: [{right-left,g},{bottom-top,g}])</DisplayString>
+    <Expand>
+      <Item Name="left"     >left,g</Item>
+      <Item Name="right"    >right,g</Item>
+      <Item Name="top"      >top,g</Item>
+      <Item Name="bottom"   >bottom,g</Item>
+      <Item Name="[width]"  >(bottom - top),g</Item>
+      <Item Name="[height]" >(right - left),g</Item>
+    </Expand>
+  </Type>
+  <Type Name="nines::rect::ValidRect&lt;*&gt;">
+    <DisplayString>[{__0.left,g},{__0.top,g}]..[{__0.right,g},{__0.bottom,g}] (size: [{__0.right-__0.left,g},{__0.bottom-__0.top,g}])</DisplayString>
+    <Expand>
+      <ExpandedItem>__0</ExpandedItem>
+    </Expand>
+  </Type>
+</AutoVisualizer>
