@@ -16,6 +16,13 @@ impl<S: Scalar> PartialEq<ValidRect<S>> for ValidRect<S> { fn eq(&self, other: &
 impl<S: Scalar> PartialEq<Rect<S>>      for ValidRect<S> { fn eq(&self, other: &Rect<S>     ) -> bool { self.0 == *other } }
 impl<S: Scalar> PartialEq<ValidRect<S>> for Rect<S>      { fn eq(&self, other: &ValidRect<S>) -> bool { *self == other.0 } }
 
+impl<S: Scalar> TryFrom< Rect<S>> for ValidRect<S> { type Error = Error; fn try_from(value:  Rect<S>) -> Result<Self, Error> { value.validate() } }
+impl<S: Scalar> TryFrom<&Rect<S>> for ValidRect<S> { type Error = Error; fn try_from(value: &Rect<S>) -> Result<Self, Error> { value.validate() } }
+impl<S: Scalar> From< ValidRect<S>> for Rect<S> { fn from(value:  ValidRect<S>) -> Self { value.0 } }
+impl<S: Scalar> From<&ValidRect<S>> for Rect<S> { fn from(value: &ValidRect<S>) -> Self { value.0 } }
+impl<S: Scalar> AsRef<Rect<S>> for ValidRect<S> { fn as_ref(&self) -> &Rect<S> { &self.0 } }
+// NOTE:  Do *NOT* implement AsMut!  That would allow validation to be bypassed, mooting the point of this type!
+
 
 
 /// A rectangle.  See also [ValidRect].  Generally not inclusive of the right/bottom edge.
@@ -98,20 +105,6 @@ impl<S: Scalar> From<Range<(S, S)>> for Rect<S> {
 impl<S: Scalar> From<(Range<S>, Range<S>)> for Rect<S> {
     fn from(value: (Range<S>, Range<S>)) -> Self {
         Self { left: value.0.start, right: value.0.end, top: value.1.start, bottom: value.1.end }
-    }
-}
-
-impl<S: Scalar> TryFrom<Rect<S>> for ValidRect<S> {
-    type Error = Error;
-    fn try_from(value: Rect<S>) -> Result<Self, Error> {
-        value.validate()
-    }
-}
-
-impl<S: Scalar> TryFrom<&Rect<S>> for ValidRect<S> {
-    type Error = Error;
-    fn try_from(value: &Rect<S>) -> Result<Self, Error> {
-        value.validate()
     }
 }
 

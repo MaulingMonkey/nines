@@ -16,6 +16,14 @@ impl<S: Scalar> PartialEq<ValidDimensions<S>> for ValidDimensions<S> { fn eq(&se
 impl<S: Scalar> PartialEq<Dimensions<S>>      for ValidDimensions<S> { fn eq(&self, other: &Dimensions<S>     ) -> bool { self.0 == *other } }
 impl<S: Scalar> PartialEq<ValidDimensions<S>> for Dimensions<S>      { fn eq(&self, other: &ValidDimensions<S>) -> bool { *self == other.0 } }
 
+impl<S: Scalar> TryFrom< Dimensions<S>> for ValidDimensions<S> { type Error = Error; fn try_from(value:  Dimensions<S>) -> Result<Self, Error> { value.validate() } }
+impl<S: Scalar> TryFrom<&Dimensions<S>> for ValidDimensions<S> { type Error = Error; fn try_from(value: &Dimensions<S>) -> Result<Self, Error> { value.validate() } }
+impl<S: Scalar> From< ValidDimensions<S>> for Dimensions<S> { fn from(value:  ValidDimensions<S>) -> Self { value.0 } }
+impl<S: Scalar> From<&ValidDimensions<S>> for Dimensions<S> { fn from(value: &ValidDimensions<S>) -> Self { value.0 } }
+impl<S: Scalar> AsRef<Dimensions<S>> for ValidDimensions<S> { fn as_ref(&self) -> &Dimensions<S> { &self.0 } }
+// NOTE:  Do *NOT* implement AsMut!  That would allow validation to be bypassed, mooting the point of this type!
+
+
 
 /// The dimensions of a nine-square layout.  See also [ValidDimensions].
 /// 
@@ -70,20 +78,6 @@ impl<S: Scalar> Dimensions<S> {
             assert!(self.inner.bottom <= self.outer.bottom, "Expected inner.bottom ≤ outer.bottom");
         }
         ValidDimensions(*self)
-    }
-}
-
-impl<S: Scalar> TryFrom<Dimensions<S>> for ValidDimensions<S> {
-    type Error = Error;
-    fn try_from(value: Dimensions<S>) -> Result<Self, Error> {
-        value.validate()
-    }
-}
-
-impl<S: Scalar> TryFrom<&Dimensions<S>> for ValidDimensions<S> {
-    type Error = Error;
-    fn try_from(value: &Dimensions<S>) -> Result<Self, Error> {
-        value.validate()
     }
 }
 
